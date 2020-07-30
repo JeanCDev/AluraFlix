@@ -1,8 +1,11 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable eol-last */
 import styled from 'styled-components';
 
-const Button = styled.button `
+const Button = styled.button`
   color: var(--white);
   border: 1px solid var(--white);
+  background-color: var(--black);
   box-sizing: border-box;
   cursor: pointer;
   padding: 16px 24px;

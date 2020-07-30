@@ -1,0 +1,10 @@
+{
+    "categorys":[
+        {   
+            "id": 1,
+            "name":"Front-End",
+            "description":"Project front end",
+            "color":"#cb61ff"
+        }
+    ]
+}
