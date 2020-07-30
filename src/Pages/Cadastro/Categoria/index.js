@@ -31,9 +31,11 @@ function CadastroCategoria() {
 
   useEffect(() => {
     console.log('oi');
-    const url = 'http://localhost:8080/categorys';
+    const url = window.location.hostname.includes('localhost')
+      ? 'http://localhost:8080/categorys'
+      : 'https://aluraflixbe.herokuapp.com/categorys';
 
-    fetch(url).then(async (response)=>{
+    fetch(url).then(async (response) => {
       const resp = await response.json();
 
       setCategorys([
