@@ -4,33 +4,20 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/menu/components/Button';
+import useForm from '../../../Hooks/useForm';
 
 function CadastroCategoria() {
-  const inicialValues = {
-    name: '',
+  const initialValues = {
+    title: '',
     description: '',
     color: '',
   };
 
+  const { handle, values, clearForm } = useForm(initialValues);
+
   const [categorys, setCategorys] = useState([]);
-  const [values, setValues] = useState(inicialValues);
-
-  function setValue(key, value) {
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handle(i) {
-    setValue(
-      i.target.getAttribute('name'),
-      i.target.value,
-    );
-  }
 
   useEffect(() => {
-    console.log('oi');
     const url = window.location.hostname.includes('localhost')
       ? 'http://localhost:8080/categorys'
       : 'https://aluraflixbe.herokuapp.com/categorys';
@@ -48,7 +35,7 @@ function CadastroCategoria() {
     <PageDefault>
       <h1>
         Página de cadastro de Categoria:
-        {values.name}
+        {values.title}
       </h1>
 
       <form onSubmit={function handleSubmit(e) {
@@ -58,7 +45,7 @@ function CadastroCategoria() {
           values,
         ]);
 
-        setValues(inicialValues);
+        clearForm();
       }}
       >
 
@@ -67,8 +54,8 @@ function CadastroCategoria() {
           <FormField
             label="Nome da Categoria"
             type="text"
-            name="name"
-            value={values.name}
+            name="title"
+            value={values.title}
             onChange={handle}
           />
         </div>
@@ -106,9 +93,9 @@ function CadastroCategoria() {
       )}
 
       <ul>
-        {categorys.map((category, index) => (
-          <li key={`${category.name}`}>
-            {category.name}
+        {categorys.map((category) => (
+          <li key={`${category.title}`}>
+            {category.title}
           </li>
         ))}
       </ul>
